@@ -74,4 +74,33 @@ describe("Campaigns", () => {
 
      assert.equal('Buy batteries', request.description)
   })
+
+  it('processes requests', async () => {
+    await campaign.methods.contribute().send({
+      from: accounts[0],
+      value: web3.utils.toWei('10', 'ether'),
+    })
+
+    await campaign.methods
+     .createRequest('A', web3.utils.toWei('5', 'ether'), accounts[1])
+     .send({ from: accounts[0], gas: '1000000' })
+
+    await campaign.methods.approveRequest(0).send({
+      from: accounts[0],
+      gas: '1000000'
+    })
+
+    let initialBalance = await web3.eth.getBalance(accounts[1])
+    initialBalance = Number(web3.utils.fromWei(initialBalance, 'ether'))
+
+    await campaign.methods.finalizeRequest(0).send({
+      from: accounts[0],
+      gas: '1000000'
+    })
+
+    let finalBalance = await web3.eth.getBalance(accounts[1])
+    finalBalance = Number(web3.utils.fromWei(finalBalance, 'ether'))
+    
+    assert(finalBalance - initialBalance === 5)
+  })
 });
