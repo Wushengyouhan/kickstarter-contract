@@ -1,3 +1,7 @@
 合约部署地址:
 Attempting to deploy from account 0x23F8a1703ce245349a5Bad63b111Aa06ada7bB30
 Contract deployed to 0x229e4ea6675e43E0eC684b31372511d724873a92
+
+新合约地址
+Attempting to deploy from account 0x23F8a1703ce245349a5Bad63b111Aa06ada7bB30
+Contract deployed to 0x70E262d594746C9907180A74e203F45a585a0E83
