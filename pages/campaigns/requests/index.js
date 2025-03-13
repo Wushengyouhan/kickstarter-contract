@@ -20,7 +20,20 @@ class RequestIndex extends Component {
         })
     );
 
-    return { address, requests, requestCount, approversCount };
+    const formattedRequests = requests.map(request => ({
+      description: request.description,
+      value: request.value.toString(),
+      recipient: request.recipient,
+      complete: request.complete,
+      approvalCount: request.approvalCount.toString()
+    }));
+
+    return { 
+      address, 
+      requests: formattedRequests, 
+      requestCount: requestCount.toString(),
+      approversCount: approversCount.toString()
+    };
   }
 
   renderRows() {
