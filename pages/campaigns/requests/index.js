@@ -20,19 +20,19 @@ class RequestIndex extends Component {
         })
     );
 
-    const formattedRequests = requests.map(request => ({
+    const formattedRequests = requests.map((request) => ({
       description: request.description,
       value: request.value.toString(),
       recipient: request.recipient,
       complete: request.complete,
-      approvalCount: request.approvalCount.toString()
+      approvalCount: request.approvalCount.toString(),
     }));
 
-    return { 
-      address, 
-      requests: formattedRequests, 
+    return {
+      address,
+      requests: formattedRequests,
       requestCount: requestCount.toString(),
-      approversCount: approversCount.toString()
+      approversCount: approversCount.toString(),
     };
   }
 
@@ -58,7 +58,9 @@ class RequestIndex extends Component {
         <h3>Requests</h3>
         <Link route={`/campaigns/${this.props.address}/requests/new`}>
           <a>
-            <Button primary>Add Request</Button>
+            <Button primary floated="right" style={{ marginBottom: 10 }}>
+              Add Request
+            </Button>
           </a>
         </Link>
         <Table>
@@ -75,6 +77,7 @@ class RequestIndex extends Component {
           </Header>
           <Body>{this.renderRows()}</Body>
         </Table>
+        <div>Found {this.props.requestCount} requests.</div>
       </Layout>
     );
   }
