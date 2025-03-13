@@ -29,6 +29,7 @@ class RequestIndex extends Component {
       return (
         <RequestRow
           key={index}
+          id={index}
           request={request}
           address={this.props.address}
         />
